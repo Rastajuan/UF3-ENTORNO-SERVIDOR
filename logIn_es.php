@@ -1,16 +1,12 @@
 <?php
 session_start();
-?>
 
-<!DOCTYPE html>
-
-<?php
 if (isset($_POST['botonEntrar'])) {
     if ($_POST['usuario'] == 'ifp'  && $_POST['password'] == '2022') {
         $nombreusuario = $_POST['usuario'];
         $_SESSION['usuario'] = $nombreusuario;
         //Creamos la cookie en el navegador, asignándole un primer nombre cualquiera, seguido del nombre del usuario recogido en $nombreusuario, seguido del tiempo que debe guardar la cookie (momento actual con time() + el tiempo en segundos que la debe guardar (una hora en el ejercicio), seguido de'/' que le indica la raiz o pagina principal de la sesión)
-        setcookie('cookieDeUsuario',$nombreusuario,time() + 3600, '/');
+        setcookie('cookieDeUsuario', $nombreusuario, time() + 3600, '/');
 
         header('Location: index.php');
         exit();
@@ -20,6 +16,8 @@ if (isset($_POST['botonEntrar'])) {
 }
 
 ?>
+
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -73,7 +71,9 @@ if (isset($_POST['botonEntrar'])) {
             ?>
         </fieldset>
 
-
+        <div class="registrarse">
+            <p>¿No tienes una cuenta? <a href="registro.php">Regístrate</a></p>
+        </div>
 
     </section>
 
