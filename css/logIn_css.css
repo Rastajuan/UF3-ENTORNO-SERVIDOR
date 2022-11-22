@@ -28,25 +28,15 @@ header {
   color: #75485E;
 }
 
-section {
-  display: grid;
-  place-content: center;
- min-height: 300px;
-  padding: 20px;
-  border: 2px solid aqua;
-  box-shadow: 1px 1px 10px 1px #000000;
-  border-radius: 15px;
-  font-size: 1.5em;
-  /* background-color: indigo; */
-}
+
 
 footer {
-  text-align: center;
-  font-size: 0.7em;
-  bottom: 50px;
-  margin-top: 150px;
-  color: #75485E;
-  opacity: 0.6;
+  position: absolute;
+	text-align: center;
+	font-size: 0.7em;
+	bottom: 50px;
+	color: #75485e;
+	opacity: 0.6;
   /* background-color: darkorchid; */
 }
 
@@ -71,6 +61,18 @@ legend {
 ::placeholder{
   font-size: 0.8em;
   color: gainsboro;
+}
+
+section {
+  display: grid;
+  place-content: center;
+ min-height: 300px;
+  padding: 20px;
+  border: 2px solid aqua;
+  box-shadow: 1px 1px 10px 1px #000000;
+  border-radius: 15px;
+  font-size: 1.5em;
+  /* background-color: indigo; */
 }
 
 /*CLASES*/
@@ -103,6 +105,12 @@ legend {
 }
 .negrita {
   font-weight: bold;
+  color: #75485E;
+}
+.registrarse{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.7em;
   color: #75485E;
 }
 .sinBorde {
