@@ -24,22 +24,22 @@
                             <label for="usuario">Usuario</label>
                         </td>
                         <td>
-                            <input class="sinBorde" type="text" name="usuario" placeholder="Username" autofocus required</td>
+                            <input id="usuario" class="sinBorde" type="text" name="usuario" placeholder="Username" autofocus required</td>
 
                     </tr>
                     <tr>
                         <td class="negrita">
                             <label for="nombre">Nombre</label>
                         </td>
-                        <td><input class="sinBorde" type="text" name="nombre" placeholder="****" />
+                        <td><input id="nombre" class="sinBorde" type="text" name="nombre" placeholder="****" required />
                         </td>
 
                     </tr>
                     <tr>
                         <td class="negrita">
-                            <label for="email">Email </label>
+                            <label id="email" for="email">Email </label>
                         </td>
-                        <td><input class="sinBorde" type="email" name="email" placeholder="Email" />
+                        <td><input class="sinBorde" type="email" name="email" placeholder="Email" required />
                         </td>
 
                     </tr>
@@ -47,14 +47,22 @@
                         <td class="negrita">
                             <label for="pasword"> Password </label>
                         </td>
-                        <td><input class="sinBorde" type="password" name="password" placeholder="****" />
+                        <td><input id="password" class="sinBorde" type="password" name="password" placeholder="****" required />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="negrita">
+                            <label for="pasword2"> Password </label>
+                        </td>
+                        <td><input id="password2" class="sinBorde" type="password" name="password2" placeholder="Repita contraseña" required />
                         </td>
 
                     </tr>
                 </table>
-              
+
                 <div class="botonera">
-                    <input class="boton" type="submit" value="Registrar" name="botonRegistrar" />
+                    <input id="botonRegistrar" class="boton" type="submit" value="Registrar" name="botonRegistrar" />
                     <input class="boton" type="reset" value="Borrar Formulario" name="botonEnviar" />
                 </div>
             </form>
@@ -68,6 +76,9 @@
     <footer>
         <p>©Copyleft 2022 <strong>Juan Bello Fern&aacute;ndez</strong> </br> Trabajo perteneciente a la UF3 de Diseño Web en Entorno Servidor. 2º DAW</p>
     </footer>
+
+    <script src="js/registro.js"></script>
+
 </body>
 
 </html>
