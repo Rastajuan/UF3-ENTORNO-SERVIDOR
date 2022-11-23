@@ -7,7 +7,7 @@ class Actividad{
     public $fecha;
     public $ciudad;
     public $precio;
-    public $usuario;
+    Public $usuario;
 
     //Creacion de la funcion constructora del objeto mediante parámetros (las variables creadas anteriormente)
     function __construct($titulo, $tipo, $fecha, $ciudad, $precio, $usuario){
@@ -16,7 +16,7 @@ class Actividad{
         $this->fecha=$fecha;
         $this->ciudad=$ciudad;
         $this->precio=$precio;
-        $this->usuario= $usuario;
+        $this->usuario=$usuario;
     }
 }
 ?>

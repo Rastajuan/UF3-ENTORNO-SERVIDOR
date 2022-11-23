@@ -1,3 +1,26 @@
+<?php
+
+require "Manejadores/ManejadorUsuario.php"; 
+
+session_start(); 
+
+if(isset($_POST["botonRegistrar"])) {
+    $usuario = $_POST["usuario"];
+    $correo = $_POST["email"];
+    $nombre = $_POST["nombre"];
+    $password = $_POST["password"];
+    registrarUsuario($usuario, $nombre, $correo, $password);
+
+    $id_usuario = obtenerUsuarioId($usuario); 
+
+    if($id_usuario) {
+        hacerLogin($id_usuario);
+    } else {
+        echo "El usuario o la contraseña no son válidos"; 
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
