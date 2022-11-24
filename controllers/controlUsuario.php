@@ -1,13 +1,14 @@
 <?php 
 
-require 'controllers/db.php';
+require 'controllers/control_db.php';
 
-function comprobarLogin()
+
+function checkLogin()
 {
     if(!isset($_SESSION["usuario"]) &&
         isset($_COOKIE["cookie_usuario"]))
     {
-        $_SESSION["usuario"] = recuperarUsuario($_COOKIE["cookie_usuario"]);
+        $_SESSION["usuario"] = gettingUser($_COOKIE["cookie_usuario"]);
     }
 
     if(!isset($_SESSION["usuario"]))
@@ -17,12 +18,12 @@ function comprobarLogin()
     }
 }
 
-function obtenerUsuario($usuario, $contraseña)
+function getUser($usuario, $contraseña)
 {
     $consulta  = "SELECT id, nombre, correo FROM usuarios 
                   WHERE id = '$usuario' AND contraseña = '$contraseña'";
 
-    $resultado = ejecutarConsulta($consulta);
+    $resultado = runQuery($consulta);
 
     if($resultado)
     {
@@ -31,12 +32,12 @@ function obtenerUsuario($usuario, $contraseña)
     }
 }
 
-function recuperarUsuario($usuario)
+function gettingUser($usuario)
 {
     $consulta  = "SELECT Id, Nombre, Correo FROM usuarios 
                   WHERE Id = '$usuario'";
 
-    $resultado = ejecutarConsulta($consulta);
+    $resultado = runQuery($consulta);
 
     if($resultado)
     {
@@ -45,7 +46,7 @@ function recuperarUsuario($usuario)
     }
 }
 
-function hacerLogin($usuario)
+function loginUser($usuario)
 {
     $_SESSION["usuario"] = $usuario;
     setcookie('cookie_usuario', $usuario["id"], time() + 3600, '/');
@@ -54,19 +55,20 @@ function hacerLogin($usuario)
     exit();
 }
 
-function registrarUsuario($usuario, $nombre, $correo, $contraseña)
+function registerUser($id, $nombre, $correo, $contraseña)
 {
-    global $conexion_mysql;
+    global $conexion;
 
     $consulta  = "INSERT INTO usuarios (id, nombre, correo, contraseña)  
     VALUES (?, ?, ?, ?)";
 
-    $stmt = $conexion_mysql->prepare($consulta);
-    $stmt->bind_param('ssss',$usuario, $nombre, $correo, $contraseña); 
-    $resultado = $stmt->execute();
+    $resultado = $conexion->prepare($consulta);
+    $resultado->bind_param(
+        'ssss',
+        $id, 
+        $nombre, 
+        $correo, 
+        $contraseña); 
 
-    if($resultado)
-    {
-        return obtenerUsuario($usuario, $contraseña);
-    }
+    $resultado->execute();
 }

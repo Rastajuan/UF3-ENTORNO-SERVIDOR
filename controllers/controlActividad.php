@@ -2,7 +2,8 @@
     
 require "clases/actividad.php";
 
-function comprobarActividad() 
+//Funcion para crear una actividad
+function checkActivity() 
 {
     if (isset($_POST["botonEnviar"]) && $_SERVER["REQUEST_METHOD"] === 'POST') 
     {
@@ -12,12 +13,13 @@ function comprobarActividad()
           $_POST["fecha"], 
           $_POST["precio"], 
           $_SESSION["usuario"]["id"]);
-        
-        crearActividad($actividadNueva);
+
+        createActivity($actividadNueva);
     }
 }
 
-function crearActividad($actividad)
+//Funcion para insertar una actividad
+function createActivity($actividad)
 {
 {
     global $conexion;
@@ -39,7 +41,7 @@ function crearActividad($actividad)
 
 }
 //Funcion que devuelve un array con todas las actividades de la base de datos
-function listarActividades()
+function listActivities()
 {
 
     global $conexion; //Para poder usar la variable $conexion en la función, la declaramos como global
@@ -70,5 +72,4 @@ function listarActividades()
 
     return $actividades;
 }
-
 
