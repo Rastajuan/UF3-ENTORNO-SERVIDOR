@@ -4,10 +4,10 @@ session_start();
 require "controllers/controlUsuario.php";
 
 if (isset($_POST['botonEntrar'])) {
-    $usuario = obtenerUsuario($_POST["usuario"], $_POST["contraseña"]);
+    $usuario = getUser($_POST["usuario"], $_POST["contraseña"]);
 
     if ($usuario) {
-        hacerLogin($usuario);
+        loginUser($usuario);
     } else {
         $error = '<div class="contError"><img class = "icon" src = "imgs/alertaError.jpg"/>Usuario o contraseña incorrectos</div>';
     }

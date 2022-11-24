@@ -2,16 +2,17 @@
 
 session_start();
 
-require "controladores/controladorUsuarios.php";
+require "controllers/controlUsuario.php";
 
 
 
-if (isset($_POST["registrar"])) {
-    $usuario = registrarUsuario($_POST["id"], $_POST["nombre"], $_POST["correo"],  $_POST["contraseña"]);
+if (isset($_POST["botonRegistrar"])) {
+    $usuario = registerUser($_POST["id"], $_POST["nombre"], $_POST["correo"],  $_POST["contraseña"]);
 
     if ($usuario) {
-        hacerLogin($usuario);
+        loginUser($usuario);
     }
+    
 }
 ?>
 
@@ -34,57 +35,76 @@ if (isset($_POST["registrar"])) {
     <section>
         <fieldset>
 
-            <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="">
+            <form role="form" method="post" action="" class="">
                 <table>
                     <tr>
                         <td class="negrita">
-                            <label for="usuario">Usuario</label>
+                            <label for="id">Usuario</label>
                         </td>
                         <td>
-                            <input id="usuario" class="sinBorde" type="text" name="usuario" placeholder="Username" autofocus required</td>
+                            <input id="id" class="sinBorde" type="text" name="id" placeholder="Escriba su nombre de usuario" autofocus required</td>
 
                     </tr>
                     <tr>
                         <td class="negrita">
                             <label for="nombre">Nombre</label>
                         </td>
-                        <td><input id="nombre" class="sinBorde" type="text" name="nombre" placeholder="****" required />
+                        <td><input id="nombre" class="sinBorde" type="text" name="nombre" placeholder="Escriba su nombre" required />
                         </td>
 
                     </tr>
                     <tr>
                         <td class="negrita">
-                            <label id="email" for="email">Email </label>
+                            <label id="email" for="correo">Email </label>
                         </td>
-                        <td><input class="sinBorde" type="email" name="email" placeholder="Email" required />
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td class="negrita">
-                            <label for="pasword"> Password </label>
-                        </td>
-                        <td><input id="password" class="sinBorde" type="password" name="password" placeholder="****" required />
+                        <td><input class="sinBorde" type="email" name="correo" placeholder="Escriba su correo electrónico" required />
                         </td>
 
                     </tr>
                     <tr>
                         <td class="negrita">
-                            <label for="pasword2"> Password </label>
+                            <label for="contraseña"> Password </label>
                         </td>
-                        <td><input id="password2" class="sinBorde" type="password" name="password2" placeholder="Repita contraseña" required />
+                        <td><input id="contraseña" class="sinBorde" type="password" name="contraseña" placeholder="Ingrese una contraseña" required />
                         </td>
 
                     </tr>
+                    <tr>
+                        <td class="negrita">
+                            <label for="contraseña2"> Password </label>
+                        </td>
+                        <td><input id="contraseña2" class="sinBorde" type="password" name="contraseña2" placeholder="Repita contraseña" required />
+                        </td>
+
+                    </tr>
+                   
+
+
+
+                    
                 </table>
+
+
+                <div class="infoForm">
+                    <input id="check" class="sinBorde" type="checkbox" name="check" required />
+                    <label for="check"> Acepto las <a href="condicionesUso.html" target="_blank"> condiciones de uso</a> </label>
+
+                </div>
 
                 <div class="botonera">
                     <input id="botonRegistrar" class="boton" type="submit" value="Registrar" name="botonRegistrar" />
-                    <input class="boton" type="reset" value="Borrar Formulario" name="botonEnviar" />
+                    <input class="boton" type="reset" value="Borrar Formulario" name="botonReset" />
                 </div>
+
             </form>
+
         </fieldset>
-        <p class="infoForm">* Todos los campos son obligatorios</p>
+
+        <div class="infoForm">
+            <p>* Todos los campos son obligatorios</p>
+
+        </div>
+
         <div class="registrarse">
             <p class="infoForm">¿Ya tienes una cuenta? <a style="color:red" href="logIn_es.php">Ingresa</a></p>
         </div>

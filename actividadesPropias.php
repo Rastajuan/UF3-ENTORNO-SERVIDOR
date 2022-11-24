@@ -21,21 +21,23 @@ checkActivity();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Actividades</title>
+    <title>Actividades Propias</title>
     <link rel="stylesheet" href="css/index_css.css">
+    
+    
 </head>
 
 <body>
     <header>
         <h1>FORMULARIO DE ACTIVIDADES</h1>
         <BR>
-        <h2>RELLENE LOS CAMPOS PARA CREAR UNA NUEVA ACTIVIDAD</h2>
+        <h2>MODIFIQUE SUS ACTIVIDADES</h2>
     </header>
 
     <div id="users">
         <nav class="users">
             <div>
-                <p>Usuario actual:<spam> <?php echo $_SESSION["usuario"]["id"]; ?></spam>
+                <p>Usuario actual:<spam> <?php echo $_SESSION["usuario"]["nombre"]; ?></spam>
                 </p>
             </div>
             <div class="salir">
@@ -47,26 +49,33 @@ checkActivity();
         </nav>
     </div>
 
-    <div id="formulario">
-        <section class="datos">
-            <?php include "formulario.html" ?>
-        </section>
+    <div class="encabezadoActividades">
+        <h2>LISTADO DE SUS ACTIVIDADES</h2>
+    </div>
 
-        <p class="info">Rellene el formulario para añadir actividades a su agenda<br>
-            <br>Recuerde que los campos marcados con (*) son obligatorios y que <strong>la actividad se crea como gratuita por defecto</strong>
-            <br><br>
-           Para acceder a sus actividades para modificarlas o eliminarlas pulse <a href="actividadesPropias.php">aquí</a> <br><br>(Recuerde que solamente puede modificar o eliminar las actividades que haya creado)
-        </p>
+
+    <div id="resultados">
+        <?php
+        $actividades = listActivities();
+
+        foreach ($actividades as $actividad) :  ?>
+
+            <?php
+            include "actividadesModificar.php";
+            ?>
+
+        <?php endforeach; ?>
 
 
     </div>
+
 
     <div class="encabezadoActividades">
         <h2>LISTADO DE ACTIVIDADES</h2>
     </div>
 
 
-    <div id="resultados">
+    <div id="resultados2">
         <?php
         $actividades = listActivities();
 
