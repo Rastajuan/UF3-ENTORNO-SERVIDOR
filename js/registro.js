@@ -4,11 +4,11 @@ document
 
 //Validacion del formulario de registro
 function validarRegistro() {
-	var usuario = document.getElementById("usuario").value;
+	var usuario = document.getElementById("id").value;
 	var nombre = document.getElementById("nombre").value;
-	var email = document.getElementById("email").value;
-	var password = document.getElementById("password").value;
-	var password2 = document.getElementById("password2").value;
+	var correo = document.getElementById("correo").value;
+	var contraseña = document.getElementById("contraseña").value;
+	var contraseña2 = document.getElementById("contraseña2").value;
 
 	if (usuario == "") {
 		alert("El campo usuario es obligatorio");
@@ -19,19 +19,19 @@ function validarRegistro() {
 		return false;
 	}
 
-	if (email == "") {
+	if (correo == "") {
 		alert("El campo email es obligatorio");
 		return false;
 	}
-	if (password == "") {
+	if (contraseña == "") {
 		alert("El campo password es obligatorio");
 		return false;
 	}
-	if (password2 == "") {
+	if (contraseña2 == "") {
 		alert("El campo password2 es obligatorio");
 		return false;
 	}
-	if (password != password2) {
+	if (contraseña != contraseña2) {
 		alert("Las contraseñas no coinciden");
 		return false;
 	}
