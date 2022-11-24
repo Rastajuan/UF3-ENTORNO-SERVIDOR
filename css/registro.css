@@ -66,8 +66,9 @@ legend {
 section {
 	display: grid;
 	place-content: center;
-	min-height: 300px;
-	padding: 25px 25px 25px 25px;
+	min-height: 400px;
+	width: 45%;
+	padding: 25px 25px 15px 25px;
 	border: 2px solid aqua;
 	box-shadow: 1px 1px 10px 1px #000000;
 	border-radius: 15px;
@@ -77,6 +78,7 @@ section {
 
 table{
     font-size: .5em;
+	text-align: left;
 }
 
 /*CLASES*/
