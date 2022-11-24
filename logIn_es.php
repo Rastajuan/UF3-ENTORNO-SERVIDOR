@@ -1,15 +1,13 @@
 <?php
 session_start();
 
-if (isset($_POST['botonEntrar'])) {
-    if ($_POST['usuario'] == 'ifp'  && $_POST['password'] == '2022') {
-        $nombreusuario = $_POST['usuario'];
-        $_SESSION['usuario'] = $nombreusuario;
-        //Creamos la cookie en el navegador, asignándole un primer nombre cualquiera, seguido del nombre del usuario recogido en $nombreusuario, seguido del tiempo que debe guardar la cookie (momento actual con time() + el tiempo en segundos que la debe guardar (una hora en el ejercicio), seguido de'/' que le indica la raiz o pagina principal de la sesión)
-        setcookie('cookieDeUsuario', $nombreusuario, time() + 3600, '/');
+require "controllers/controlUsuario.php";
 
-        header('Location: index.php');
-        exit();
+if (isset($_POST['botonEntrar'])) {
+    $usuario = obtenerUsuario($_POST["usuario"], $_POST["contraseña"]);
+
+    if ($usuario) {
+        hacerLogin($usuario);
     } else {
         $error = '<div class="contError"><img class = "icon" src = "imgs/alertaError.jpg"/>Usuario o contraseña incorrectos</div>';
     }
@@ -26,13 +24,20 @@ if (isset($_POST['botonEntrar'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso Usuarios</title>
     <link rel="stylesheet" href="../css/logIn_css.css">
+    <noscript>
+        Para utilizar las funcionalidades completas de este sitio es necesario tener
+        JavaScript habilitado. Aquí están las
+        <a href="https://www.enable-javascript.com/es/">
+            instrucciones para habilitar JavaScript en tu navegador web
+        </a>
+    </noscript>
 
 </head>
 
 <body>
 
     <header>
-        <h1>ACCESO A CREACI&Oacute;N DE ACTIVIDADES</h1>
+        <h1>ACCESO AGENDA CULTURAL</h1>
     </header>
 
     <section>
@@ -54,12 +59,15 @@ if (isset($_POST['botonEntrar'])) {
                         <td class="negrita">
                             <label for="pasword"> Password </label>
                         </td>
-                        <td><input class="sinBorde" type="password" name="password" placeholder="****" />
+                        <td><input class="sinBorde" type="password" name="contraseña" placeholder="****" />
                         </td>
 
                     </tr>
 
                 </table>
+                <div class="registrarse">
+                    <p> <a style="color:red" href="#">¿Has olvidado tu contraseña?</a></p>
+                </div>
                 <input class="boton botonLog" type="submit" value="Entrar" name="botonEntrar" />
             </form>
             <!-- Imprimimos la variable del error de login solamente si existe el error definido en el else inicial-->
@@ -72,8 +80,9 @@ if (isset($_POST['botonEntrar'])) {
         </fieldset>
 
         <div class="registrarse">
-            <p>¿No tienes una cuenta? <a href="registro.php">Regístrate</a></p>
+            <p>¿No tienes una cuenta? <a style="color:darkblue" href="registro.php"><strong>Regístrate</strong></a></p>
         </div>
+
 
     </section>
 

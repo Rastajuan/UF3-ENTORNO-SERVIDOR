@@ -1,14 +1,16 @@
 <?php
 
 
-require "actividad.php";
-require "Manejadores/manejadorUsuario.php";
-require "Manejadores/manejadorActividad.php";
-require "Manejadores/db.php";
+// require "clases/actividad.php";
+require "controllers/controlUsuario.php"; 
+require "controllers/controlActividad.php"; 
+
 
 session_start();
+
 comprobarLogin();
-comprobarActividad();
+
+comprobarActividad(); 
 
 ?>
 
@@ -33,7 +35,7 @@ comprobarActividad();
     <div id="users">
         <nav class="users">
             <div>
-                <p>Usuario actual:<spam> <?php echo $_SESSION["usuario"]; ?></spam>
+                <p>Usuario actual:<spam> <?php echo $_SESSION["usuario"]["nombre"]; ?></spam>
                 </p>
             </div>
             <div class="salir">
@@ -58,15 +60,17 @@ comprobarActividad();
     <div class="encabezadoActividades">
         <h2>LISTADO DE ACTIVIDADES</h2>
     </div>
-
+    
 
     <div id="resultados">
-        <?php
-        $actividades = listarActividades();
-        foreach ($actividades as $actividad) :  ?>
+         <?php 
+            $actividades = listarActividades(); 
+            
+            foreach($actividades as $actividad):  ?>
+
+            <?php 
+                include "resultado.php";
             ?>
-            <!-- Incluimos el resultado desde un archivo externeo 'resultado.html' con php -->
-            <?php include "resultado.php" ?>
 
         <?php endforeach; ?>
 

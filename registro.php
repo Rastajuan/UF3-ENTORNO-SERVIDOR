@@ -1,22 +1,16 @@
 <?php
 
-require "Manejadores/ManejadorUsuario.php"; 
+session_start();
 
-session_start(); 
+require "controladores/controladorUsuarios.php";
 
-if(isset($_POST["botonRegistrar"])) {
-    $usuario = $_POST["usuario"];
-    $correo = $_POST["email"];
-    $nombre = $_POST["nombre"];
-    $password = $_POST["password"];
-    registrarUsuario($usuario, $nombre, $correo, $password);
 
-    $id_usuario = obtenerUsuarioId($usuario); 
 
-    if($id_usuario) {
-        hacerLogin($id_usuario);
-    } else {
-        echo "El usuario o la contraseña no son válidos"; 
+if (isset($_POST["registrar"])) {
+    $usuario = registrarUsuario($_POST["id"], $_POST["nombre"], $_POST["correo"],  $_POST["contraseña"]);
+
+    if ($usuario) {
+        hacerLogin($usuario);
     }
 }
 ?>
@@ -91,8 +85,9 @@ if(isset($_POST["botonRegistrar"])) {
             </form>
         </fieldset>
         <p class="infoForm">* Todos los campos son obligatorios</p>
-
-
+        <div class="registrarse">
+            <p class="infoForm">¿Ya tienes una cuenta? <a style="color:red" href="logIn_es.php">Ingresa</a></p>
+        </div>
     </section>
 
 
