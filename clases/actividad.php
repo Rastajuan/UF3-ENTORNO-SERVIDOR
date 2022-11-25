@@ -39,5 +39,25 @@ class Actividad{
     function getUsuario(){
         return $this->usuario;
     }
+
+    //Metodos set. Asignan un valor a las variables de la clase con una funcion
+    function setTitulo($titulo){
+        $this->titulo=$titulo;
+    }
+    function setCiudad($ciudad){
+        $this->ciudad=$ciudad;
+    }
+    function setTipo($tipo){
+        $this->tipo=$tipo;
+    }
+
+    function setFecha($fecha){
+        $this->fecha=$fecha;
+    }
+    function setPrecio($precio){
+        $this->precio=$precio;
+    }
+    function setUsuario($usuario){
+        $this->usuario=$usuario;
+    }
 }
-?>
