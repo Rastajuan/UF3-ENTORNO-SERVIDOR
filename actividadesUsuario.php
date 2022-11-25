@@ -4,6 +4,7 @@
 // require "clases/actividad.php";
 require "controllers/controlUsuario.php";
 require "controllers/controlActividad.php";
+require "controllers/controlActPropias.php";
 
 
 session_start();
@@ -21,22 +22,23 @@ checkActivity();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Actividades</title>
-    <link rel="stylesheet" href="css/index_css.css">
+    <title>Actividades Propias</title>
+    <link rel="stylesheet" href="css/actividadesPropias.css">
+
+
 </head>
 
 <body>
     <header>
         <h1>FORMULARIO DE ACTIVIDADES</h1>
         <BR>
-        <h2>RELLENE LOS CAMPOS PARA CREAR UNA NUEVA ACTIVIDAD</h2>
+        <h2>MODIFIQUE SUS ACTIVIDADES</h2>
     </header>
 
     <div id="users">
         <nav class="users">
             <div>
-                <p>Usuario:<spam> <?php echo $_SESSION["usuario"]["id"]; ?></spam>
-                    Nombre:<spam> <?php echo $_SESSION["usuario"]["nombre"]; ?></spam>
+                <p>Usuario actual:<spam> <?php echo $_SESSION["usuario"]["id"]; ?></spam> Nombre:<spam> <?php echo $_SESSION["usuario"]["nombre"]; ?></spam>
                 </p>
 
 
@@ -50,39 +52,30 @@ checkActivity();
         </nav>
     </div>
 
-    <div id="formulario">
-        <section class="datos">
-            <?php include "formulario.html" ?>
-        </section>
-
-        <p class="info">Rellene el formulario para añadir actividades a su agenda<br>
-            <br>Recuerde que los campos marcados con (*) son obligatorios y que <strong>la actividad se crea como gratuita por defecto</strong>
-            <br><br>
-            Para acceder a sus actividades para modificarlas o eliminarlas pulse <a href="actividadesUsuario.php">aquí</a> <br><br>(Recuerde que solamente puede modificar o eliminar las actividades que haya creado)
-        </p>
-
-
-    </div>
-
     <div class="encabezadoActividades">
-        <h2>LISTADO DE ACTIVIDADES</h2>
+        <h2>LISTADO DE SUS ACTIVIDADES </h2>
     </div>
 
 
-    <div id="resultados">
+    <div id="misActividades">
         <?php
-        $actividades = listActivities();
+        $user = $_SESSION["usuario"]["id"];
+
+        $actividades = listActivitiesByUser($user);
 
         foreach ($actividades as $actividad) :  ?>
 
             <?php
-            include "resultado.php";
+            include "resultadosUsuario.php";
             ?>
 
         <?php endforeach; ?>
 
 
     </div>
+
+
+
 
     <footer>
         <p>©Copyleft 2022 <strong>Juan Bello Fernández</strong> </br> Trabajo perteneciente a la UF2 de Diseño Web en Entorno Servidor. 2º DAW</p>

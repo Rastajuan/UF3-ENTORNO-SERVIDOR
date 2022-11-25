@@ -71,7 +71,7 @@ if (isset($_POST["botonRegistrar"])) {
                     </tr>
                     <tr>
                         <td class="negrita">
-                            <label for="contraseña2"> Password </label>
+                            <label for="contraseña2">Confirme: </label>
                         </td>
                         <td><input id="contraseña2" class="sinBorde" type="password" name="contraseña2" placeholder="Repita contraseña" required />
                         </td>
