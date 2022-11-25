@@ -2,6 +2,7 @@
     
 require "clases/actividad.php";
 
+
 //Funcion para crear una actividad
 function checkActivity() 
 {
@@ -72,4 +73,5 @@ function listActivities()
 
     return $actividades;
 }
+
 

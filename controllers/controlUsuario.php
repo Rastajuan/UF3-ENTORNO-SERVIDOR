@@ -3,6 +3,19 @@
 require 'controllers/control_db.php';
 
 
+function runQuery($consulta)
+{
+    global $conexion;
+
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if (!$resultado) {
+        printf("Error: %s\n", $conexion->error);
+    }
+
+    return $resultado;
+}
+
 function checkLogin()
 {
     if(!isset($_SESSION["usuario"]) &&
@@ -59,16 +72,21 @@ function registerUser($id, $nombre, $correo, $contraseña)
 {
     global $conexion;
 
-    $consulta  = "INSERT INTO usuarios (id, nombre, correo, contraseña)  
+    try {
+        $consulta  = "INSERT INTO usuarios (id, nombre, correo, contraseña)  
     VALUES (?, ?, ?, ?)";
 
-    $resultado = $conexion->prepare($consulta);
-    $resultado->bind_param(
-        'ssss',
-        $id, 
-        $nombre, 
-        $correo, 
-        $contraseña); 
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bind_param(
+            'ssss',
+            $id,
+            $nombre,
+            $correo,
+            $contraseña
+        );
 
-    $resultado->execute();
+        $resultado->execute();
+    } catch (\Throwable $th) {
+        echo' El usuario ya existe';
+    }
 }

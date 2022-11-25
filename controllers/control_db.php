@@ -9,17 +9,3 @@ try {
     error_log($e->getMessage()); //Esto es para que nos muestre los errores de MySQLi en el navegador
     die("Error al conectar con la base de datos <br> Contacte con el administrador del sistema mediante correo <a href='mailto:jbellof@gmail.com'> Enviar correo</a>"); //Si hay algún error en la conexión con la base de datos, se mostrará este mensaje.Serviria igual con exit(); en lugar de die();
 }
-
-
-function runQuery($consulta)
-{
-    global $conexion;
-
-    $resultado = mysqli_query($conexion, $consulta);
-
-    if (!$resultado) {
-        printf("Error: %s\n", $conexion->error);
-    }
-
-    return $resultado;
-}
